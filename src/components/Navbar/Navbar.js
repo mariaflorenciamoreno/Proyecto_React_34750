@@ -1,6 +1,6 @@
-import Button from '../Button/Button'
 import './Navbar.css'
 import CartWidget from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 return(
@@ -8,10 +8,10 @@ return(
         <div>
            <h2>Ambos Sidd</h2>
         </div>
-        <div style={{ display: 'flex', justifyContent:' space-around', textDecoration:'none', listStyleType:'none'}}>
-            <Button label={'Productos'} action={()=> console.log('Productos')}/>
-            <Button label={'Nosotros'} action={()=> console.log('Nosotros')}/>
-            <Button label={'Contacto'} action={()=> console.log('Contacto')}/>
+        <div style={{ display: 'flex', justifyContent:' space-between', textDecoration:'none', listStyleType:'none'}}>
+            <Link to={`/categoria/ambos`}>Ambos</Link>
+            <Link to={`/categoria/chaquetas`}>Chaquetas</Link>
+            <Link to={`/categoria/cofias`}>Cofias</Link>
         </div>
         <div>
          <CartWidget/>

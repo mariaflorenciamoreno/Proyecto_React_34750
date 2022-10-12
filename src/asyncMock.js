@@ -82,11 +82,11 @@ const productos = [
    }
 ]
 
-export const getProductos = () => {
+export const getProductos = (categoriaId) => {
    return new Promise((resolve) => {
        setTimeout(() => {
-           resolve(productos)
-       }, 2000)
+           resolve(categoriaId ? productos.filter(prod => prod.categoria === categoriaId) : productos)
+       }, 1000)
    })
 }
 
