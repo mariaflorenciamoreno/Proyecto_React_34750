@@ -1,36 +1,46 @@
 import { useState, useEffect } from "react"
-import { getProducto} from "../../asyncMock"
+/* import { getProductoById} from "../../asyncMock" */
 import { useParams } from "react-router-dom"
+import ItemDetail from '../ItemDetail/ItemDetail'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '../../Service/firebase'
 
 
-
-const ItemDetailContainer = () => {
+const ItemDetailContainer = (setCart) => {
     const [producto, setProducto] = useState ({})
     const [loading, setLoading] = useState(true)
     const { productoId } = useParams()
 
     
     useEffect (() => {
-        getProducto(productoId).then(producto =>{
-            setProducto(producto)
-        }).finally(() =>{
+
+        const docRef = doc(db, 'productos', productoId)
+
+        getDoc(docRef).then(doc => {
+            const data = doc.data()
+            const productAdapted = { id: doc.id, ...data}
+            setProducto(productAdapted)
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
             setLoading(false)
         })
-    },[])
+        /* getProductoById(productoId).then(response =>{
+            setProducto(response)
+        }).finally(() =>{
+            setLoading(false)
+        }) */
+    },[productoId])
             
  console.log(producto)
 
  if(loading) {
-    return <h1>Loading...</h1>
+    return <h1>Cargando...</h1>
  }
 
     return(
-        <div>
-            <h3>Detalle del producto</h3>
-            
-            <h2> {producto.titulo}</h2>
-            <h3>{producto.categoria}</h3>
-            <h3>${producto.precio}</h3>
+        <div className='ItemDetailContainer'>
+                       <ItemDetail  {...producto} setCart={setCart}/>
         </div>
     )
 }

@@ -1,14 +1,12 @@
-.button{
-    text-decoration: none;
-    border-radius: 25;
-    margin: 0 50px;
+.Button {
     width: auto;
-    padding: 12px;
+    margin: 5px;
+    padding-top: 12px;
     font-size: 15px;
-    background: palevioletred;
+    background: #86e7da;
     border-radius: 8px;
     flex: none;
-    display: flex;
+    display: inline-block;
     order: 1;
     align-self: center;
     flex-grow: 0;
