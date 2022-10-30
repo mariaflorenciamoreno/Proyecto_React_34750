@@ -81,7 +81,7 @@ const Checkout =  () => {
         }
     }else {
         Swal.fire(
-            'Para continuar, debes completar todos los datos',
+            'Para continuar con la compra, debes completar todos los datos',
             '',
             'error'
         )
@@ -138,11 +138,12 @@ const Checkout =  () => {
                 value={telefono} 
                 placeholder='Telefono' 
                 required="required"
-                type='number'onChange={(e) => setTelefono(e.target.value)}/>
-                <button type="submit" onClick={createOrder} className='buttonOrder' >Generar Orden</button>
+                type='number'
+                onChange={(e) => setTelefono(e.target.value)}/>
+                <button type="submit" onClick={createOrder} className='buttonOrder' >Enviar datos</button>
                 
             </form>
-            <button onClick={createOrder}>Agregar documento</button>
+            <button onClick={createOrder}>Realizar Compra</button>
 
         </>
     )
